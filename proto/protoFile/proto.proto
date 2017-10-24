@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc";
+option java_outer_classname = "MyProto";
+option objc_class_prefix = "RTG";
+
+package grpc;
+
+message Request {
+    string msg = 1;
+}
+
+message Response {
+    string msg = 1;
+}
+
+service Proto {
+    rpc noStream (Request) returns (Response) {}
+    rpc requestStream (stream Request) returns (Response) {}
+    rpc responseStream (Request) returns (stream Response) {}
+    rpc allStream (stream Request) returns (stream Response) {}
+}
